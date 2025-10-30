@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexCommerce - Leading Full-Stack Digital Commerce Enabler</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: drift 20s linear infinite;
+        }
+
+        @keyframes drift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            padding: 2rem;
+            max-width: 1000px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .tagline {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid var(--primary);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .service-card p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .service-card ul {
+            margin-top: 1rem;
+            list-style: none;
+            color: var(--gray);
+        }
+
+        .service-card ul li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-card ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .about-section {
+            background: var(--light);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .process-section {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+
+        .process-section .section-title {
+            color: white;
+        }
+
+        .process-section .section-title::after {
+            background: white;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s;
+        }
+
+        .process-step:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: white;
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .cta-section {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button-secondary {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.5);
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            padding: 0.5rem 0;
+        }
+
+        .footer-section a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">NexCommerce</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>NexCommerce</h1>
+            <div class="tagline">Leading Full-Stack Digital Commerce Enabler</div>
+            <p>Transforming businesses through cutting-edge technology, strategic marketing, and data-driven insights. Your partner in digital excellence.</p>
+            <a href="#contact" class="cta-button">Start Your Journey</a>
+        </div>
+    </section>
+
+    <section id="services" class="section">
+        <h2 class="section-title">Our Comprehensive Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">💻</div>
+                <h3>Website & Application Development</h3>
+                <p>Crafting powerful, scalable digital experiences that drive business growth and customer engagement.</p>
+                <ul>
+                    <li>Custom eCommerce Platforms</li>
+                    <li>Progressive Web Apps (PWA)</li>
+                    <li>Mobile Applications (iOS & Android)</li>
+                    <li>API Development & Integration</li>
+                    <li>Cloud Infrastructure Setup</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🔍</div>
+                <h3>Search Engine Optimization</h3>
+                <p>Dominate search rankings with our proven SEO strategies that deliver sustainable organic growth.</p>
+                <ul>
+                    <li>Technical SEO Audits</li>
+                    <li>On-Page Optimization</li>
+                    <li>Content Strategy & Creation</li>
+                    <li>Link Building Campaigns</li>
+                    <li>Local SEO & Google My Business</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3>Digital Marketing</h3>
+                <p>Multi-channel marketing campaigns that maximize ROI across all major platforms.</p>
+                <ul>
+                    <li>Facebook & Instagram Ads</li>
+                    <li>Google Ads & Shopping Campaigns</li>
+                    <li>LinkedIn B2B Marketing</li>
+                    <li>X (Twitter) Engagement</li>
+                    <li>Influencer Partnerships</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Data Analytics</h3>
+                <p>Transform raw data into actionable insights that drive intelligent business decisions.</p>
+                <ul>
+                    <li>Custom Analytics Dashboards</li>
+                    <li>Customer Behavior Analysis</li>
+                    <li>Conversion Rate Optimization</li>
+                    <li>Predictive Analytics</li>
+                    <li>A/B Testing & Experimentation</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>Graphic Design</h3>
+                <p>Stunning visual identities that capture attention and communicate your brand's unique story.</p>
+                <ul>
+                    <li>Brand Identity & Logo Design</li>
+                    <li>Marketing Collateral</li>
+                    <li>Social Media Graphics</li>
+                    <li>Product Photography & Editing</li>
+                    <li>UI/UX Design</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🚀</div>
+                <h3>Full-Stack Solutions</h3>
+                <p>End-to-end digital commerce solutions that integrate seamlessly across all touchpoints.</p>
+                <ul>
+                    <li>Complete eCommerce Setup</li>
+                    <li>Payment Gateway Integration</li>
+                    <li>Inventory Management Systems</li>
+                    <li>CRM Implementation</li>
+                    <li>Marketing Automation</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section about-section">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>Empowering Digital Commerce Excellence</h2>
+                <p>At NexCommerce, we're more than just a digital agency – we're your strategic partner in building and scaling successful online businesses.</p>
+                <p>With expertise spanning development, marketing, analytics, and design, we provide integrated solutions that address every aspect of your digital commerce needs. Our data-driven approach ensures every decision is backed by insights, every campaign is optimized for performance, and every design captivates your audience.</p>
+                <p>We've helped businesses of all sizes achieve remarkable growth through innovative technology, strategic marketing, and exceptional design. Let us help you unlock your digital potential.</p>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">250+</div>
+                    <div class="stat-label">Projects Delivered</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3.5x</div>
+                    <div class="stat-label">Average ROI Increase</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="section process-section">
+        <h2 class="section-title">Our Proven Process</h2>
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>Discovery & Strategy</h3>
+                <p>We dive deep into your business goals, target audience, and competitive landscape to craft a winning strategy.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>Design & Development</h3>
+                <p>Our team creates stunning designs and robust solutions that bring your vision to life with precision.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>Launch & Optimize</h3>
+                <p>We execute flawless launches and continuously optimize based on real-world data and user feedback.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>Scale & Grow</h3>
+                <p>With proven results, we help you scale your success and explore new opportunities for growth.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="cta-section">
+        <h2>Ready to Transform Your Digital Presence?</h2>
+        <p>Let's discuss how we can help your business achieve extraordinary results.</p>
+        <a href="mailto:hello@nexcommerce.com" class="cta-button-secondary">Get In Touch</a>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>NexCommerce</h3>
+                <p>Leading Full-Stack Digital Commerce Enabler, transforming businesses through innovative technology and strategic marketing.</p>
+                <div class="social-links">
+                    <a href="#" title="Facebook">f</a>
+                    <a href="#" title="LinkedIn">in</a>
+                    <a href="#" title="Twitter">X</a>
+                    <a href="#" title="Instagram">📷</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#services">Web Development</a></li>
+                    <li><a href="#services">SEO Services</a></li>
+                    <li><a href="#services">Digital Marketing</a></li>
+                    <li><a href="#services">Data Analytics</a></li>
+                    <li><a href="#services">Graphic Design</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#process">Our Process</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li>Email: hello@nexcommerce.com</li>
+                    <li>Phone: +1 (555) 123-4567</li>
+                    <li>Address: 123 Digital Avenue</li>
+                    <li>Business Hours: Mon-Fri 9AM-6PM</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 NexCommerce. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(15, 23, 42, 1)';
+            } else {
+                navbar.style.background = 'rgba(15, 23, 42, 0.95)';
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe service cards for animation
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
