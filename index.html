@@ -461,8 +461,39 @@
             }
         }
         #hs-form-virality-container {
-    display: none !important;
-}
+            display: none !important;
+        }
+
+        .contact-form {
+            max-width: 500px;
+            margin: 2rem auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            outline: none;
+            color: var(--dark);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+        }
+
+        #contactForm button {
+         width: 100%;
+        }
+
     </style>
 </head>
 <body>
@@ -474,7 +505,7 @@
                 <li><a href="#services">Services</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#process">Process</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contactContainer">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -484,7 +515,7 @@
             <h1>NexCommerce</h1>
             <div class="tagline">Leading Full-Stack Digital Commerce Enabler</div>
             <p>Transforming businesses through cutting-edge technology, strategic marketing, and data-driven insights. Your partner in digital excellence.</p>
-            <a href="#contact" class="cta-button">Start Your Journey</a>
+            <a href="#contactContainer" class="cta-button">Start Your Journey</a>
         </div>
     </section>
 
@@ -501,32 +532,6 @@
                     <li>Mobile Applications (iOS & Android)</li>
                     <li>API Development & Integration</li>
                     <li>Cloud Infrastructure Setup</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">🔍</div>
-                <h3>Search Engine Optimization</h3>
-                <p>Dominate search rankings with our proven SEO strategies that deliver sustainable organic growth.</p>
-                <ul>
-                    <li>Technical SEO Audits</li>
-                    <li>On-Page Optimization</li>
-                    <li>Content Strategy & Creation</li>
-                    <li>Link Building Campaigns</li>
-                    <li>Local SEO & Google My Business</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">📱</div>
-                <h3>Digital Marketing</h3>
-                <p>Multi-channel marketing campaigns that maximize ROI across all major platforms.</p>
-                <ul>
-                    <li>Facebook & Instagram Ads</li>
-                    <li>Google Ads & Shopping Campaigns</li>
-                    <li>LinkedIn B2B Marketing</li>
-                    <li>X (Twitter) Engagement</li>
-                    <li>Influencer Partnerships</li>
                 </ul>
             </div>
 
@@ -553,19 +558,6 @@
                     <li>Social Media Graphics</li>
                     <li>Product Photography & Editing</li>
                     <li>UI/UX Design</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">🚀</div>
-                <h3>Full-Stack Solutions</h3>
-                <p>End-to-end digital commerce solutions that integrate seamlessly across all touchpoints.</p>
-                <ul>
-                    <li>Complete eCommerce Setup</li>
-                    <li>Payment Gateway Integration</li>
-                    <li>Inventory Management Systems</li>
-                    <li>CRM Implementation</li>
-                    <li>Marketing Automation</li>
                 </ul>
             </div>
         </div>
@@ -622,12 +614,27 @@
         </div>
     </section>
 
-    <section id="contact" class="cta-section">
+    <section id="contactContainer" class="cta-section">
         <h2>Ready to Transform Your Digital Presence?</h2>
-        <p>Let's discuss how we can help your business achieve extraordinary results.</p>
-        <script src="https://js-na2.hsforms.net/forms/embed/244247378.js" defer></script>
-<div class="hs-form-frame" data-region="na2" data-form-id="39910472-8035-42c6-97b7-fdc4e3bd3935" data-portal-id="244247378"></div>
+        <p>Let’s discuss how we can help your business achieve extraordinary results.</p>
+
+        <form id="contactForm" class="contact-form">
+            <div class="form-group">
+            <input type="text" id="name" name="name" placeholder="Your Name" required />
+            </div>
+            <div class="form-group">
+            <input type="email" id="email" name="email" placeholder="Your Email" required />
+            </div>
+            <div class="form-group">
+            <input type="text" id="phone" name="phone" placeholder="Your Phone" required/>
+            </div>
+            <div class="form-group">
+            <textarea id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" class="cta-button-secondary">Send Message</button>
+        </form>
     </section>
+
 
     <footer>
         <div class="footer-content">
@@ -724,6 +731,116 @@
             observer.observe(card);
         });
     </script>
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        // --- Get values ---
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        // --- Validation rules ---
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phonePattern = /^[0-9]{10,15}$/; // Only digits, length between 10 and 15
+
+        let errors = [];
+
+        if (name.length < 2) {
+            errors.push("Please enter your full name.");
+        }
+
+        if (!emailPattern.test(email)) {
+            errors.push("Please enter a valid email address.");
+        }
+
+        if (!phonePattern.test(phone)) {
+            errors.push("Please enter a valid phone number (10–15 digits).");
+        }
+
+        if (message.length < 5) {
+            errors.push("Please enter a message (minimum 5 characters).");
+        }
+
+        // --- Remove existing errors if any ---
+        const existingErrorBox = document.getElementById("formErrors");
+        if (existingErrorBox) existingErrorBox.remove();
+
+        // --- Show errors if any ---
+        if (errors.length > 0) {
+            const errorBox = document.createElement("div");
+            errorBox.id = "formErrors";
+            errorBox.style.color = "red";
+            errorBox.style.marginBottom = "1rem";
+            errorBox.style.fontSize = "0.95rem";
+            errorBox.innerHTML = errors.map(err => `<p>• ${err}</p>`).join("");
+            document.getElementById("contactForm").prepend(errorBox);
+            return;
+        }
+
+        // --- Send data ---
+        const formspreeEndpoints = [
+            "https://formspree.io/f/xayzqdgy", //Satyam Bhardwaj
+            "https://formspree.io/f/xdkpbeoe", //Atul Kumar Thakur
+        ];
+
+
+        const formData = new FormData();
+        formData.append("name", name);
+        formData.append("email", email);
+        formData.append("phone", phone);
+        formData.append("message", message);
+
+        // const whatsappNumbers = [
+        //     "919876543210", // Replace with your first WhatsApp number
+        //     "918888888888", // Replace with your second
+        // ];
+
+        // const text = `Hello NexCommerce,%0A%0AName: ${name}%0AEmail: ${email}%0APhone: ${phone}%0A%0AMessage:%0A${message}`;
+
+        // // Open WhatsApp chats one by one (so not blocked by browser)
+        // whatsappNumbers.forEach((num, i) => {
+        //     setTimeout(() => {
+        //     window.open(`https://wa.me/${num}?text=${text}`, "_blank");
+        //     }, i * 700);
+        // });
+
+        try {
+            // Send to multiple Formspree endpoints
+            await Promise.all(
+            formspreeEndpoints.map(endpoint =>
+                fetch(endpoint, {
+                method: "POST",
+                body: formData,
+                headers: { Accept: "application/json" },
+                })
+            )
+            );
+
+            // ✅ Replace form with success message
+            const container = document.getElementById("contactContainer");
+            container.innerHTML = `
+            <div class="success-message" style="text-align:center;padding:3rem 1rem;">
+                <h3 style="color:#10B981;font-size:1.8rem;">✅ Thank you!</h3>
+                <p style="color:#e5e7eb;margin-top:1rem;font-size:1.1rem;">
+                Your form has been submitted successfully. Someone will connect with you soon.
+                </p>
+            </div>
+            `;
+        } catch (error) {
+            console.error("Form submission failed:", error);
+            const errorBox = document.createElement("div");
+            errorBox.id = "formErrors";
+            errorBox.style.color = "red";
+            errorBox.style.marginBottom = "1rem";
+            errorBox.innerHTML = `<p>⚠️ Something went wrong. Please try again later.</p>`;
+            document.getElementById("contactForm").prepend(errorBox);
+        }
+        });
+    </script>
+
+
 </body>
 </html>
 
