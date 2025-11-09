@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Terms & Conditions for NexCommerce services and website usage." />
+  <title>Terms & Conditions | NexCommerce</title>
+  <style>
+    body { font-family: 'Inter', sans-serif; line-height: 1.7; color: #222; margin: 0; padding: 0; background: #fafafa; }
+    header, section { max-width: 900px; margin: auto; padding: 40px 20px; background: #fff; box-shadow: 0 0 8px rgba(0,0,0,0.05); border-radius: 12px; margin-top: 30px; }
+    h1, h2, h3 { color: #1b1b1b; }
+    a { color: #0078ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Terms & Conditions</h1>
+    <p><strong>Last Updated:</strong> November 9, 2025</p>
+    <p>Welcome to <strong>NexCommerce</strong>. By using our website or services, you agree to abide by the following terms and conditions.</p>
+  </header>
+
+  <section>
+    <h2>1. Acceptance of Terms</h2>
+    <p>By accessing or using NexCommerce’s website or services, you acknowledge that you have read, understood, and agreed to these Terms & Conditions. If you disagree, you must discontinue use immediately.</p>
+  </section>
+
+  <section>
+    <h2>2. Services Overview</h2>
+    <p>NexCommerce provides full-stack digital commerce solutions including website development, performance marketing, analytics, and integrations.</p>
+  </section>
+
+  <section>
+    <h2>3. Intellectual Property</h2>
+    <p>All content, trademarks, code, and design elements on this website belong to NexCommerce. You may not copy, reproduce, or modify any part of the site without written permission.</p>
+  </section>
+
+  <section>
+    <h2>4. User Obligations</h2>
+    <ul>
+      <li>Do not use the site for unlawful or fraudulent purposes.</li>
+      <li>Do not attempt to breach our systems or extract data without authorization.</li>
+      <li>Do not impersonate NexCommerce or another entity.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>5. Payments & Subscriptions</h2>
+    <p>For clients using paid NexCommerce services:</p>
+    <ul>
+      <li>Payments must follow agreed timelines and invoices.</li>
+      <li>Delayed payments may lead to service suspension.</li>
+      <li>Refunds are not available once project execution begins unless stated in a separate agreement.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>6. Third-Party Services</h2>
+    <p>Our solutions may integrate third-party APIs or tools. NexCommerce is not liable for their reliability or data practices.</p>
+  </section>
+
+  <section>
+    <h2>7. Limitation of Liability</h2>
+    <p>NexCommerce shall not be liable for indirect or consequential damages, data loss, downtime, or misuse of our services by third parties.</p>
+  </section>
+
+  <section>
+    <h2>8. Indemnification</h2>
+    <p>You agree to indemnify NexCommerce against any claims or damages resulting from your misuse of our website or violation of these terms.</p>
+  </section>
+
+  <section>
+    <h2>9. Termination</h2>
+    <p>NexCommerce reserves the right to suspend or terminate access to its services without notice if these terms are breached.</p>
+  </section>
+
+  <section>
+    <h2>10. Governing Law</h2>
+    <p>These terms are governed by the laws of <strong>India</strong>. Any disputes shall be subject to the jurisdiction of the courts in <strong>Bangalore, Karnataka</strong>.</p>
+  </section>
+
+  <section>
+    <h2>11. Contact Information</h2>
+    <p><strong>Email:</strong> <a href="mailto:legal@nexcommerce.com">legal@nexcommerce.com</a><br>
+    <strong>Address:</strong> NexCommerce Pvt. Ltd., [Your Registered Office Address]</p>
+  </section>
+</body>
+</html>
